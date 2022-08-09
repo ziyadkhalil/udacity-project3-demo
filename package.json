@@ -6,7 +6,7 @@
     "fe-build": "cd frontend && yarn build",
     "be-test": "cd backend && yarn test",
     "fe-test": "cd frontend && yarn test",
-    "be-deploy": "eb init classroom_demo -r $AWS_DEFAULT_REGION -p 'Node.js' && eb use classroom-demo-dev && eb setenv POSTGRES_DB=$POSTGRES_DB POSTGRES_TEST_DB=$POSTGRES_TEST_DB POSTGRES_USER=$POSTGRES_USER POSTGRES_PASSWORD=$POSTGRES_PASSWORD TOKEN_SECRET=$TOKEN_SECRET PEPPER=$PEPPER SALT_ROUNDS=$SALT_ROUNDS ENV=$ENV POSTGRES_HOST=$POSTGRES_HOST && eb deploy",
+    "be-deploy": "eb init classroom_demo -r us-west-2 -p 'Node.js' && eb use classroom-demo-dev && eb setenv POSTGRES_DB=$POSTGRES_DB POSTGRES_TEST_DB=$POSTGRES_TEST_DB POSTGRES_USER=$POSTGRES_USER POSTGRES_PASSWORD=$POSTGRES_PASSWORD TOKEN_SECRET=$TOKEN_SECRET PEPPER=$PEPPER SALT_ROUNDS=$SALT_ROUNDS ENV=$ENV POSTGRES_HOST=$POSTGRES_HOST && eb deploy",
     "fe-deploy": "cd frontend/build && aws s3 cp --recursive ./ s3://$BUCKET_NAME"
   },
   "devDependencies": {},

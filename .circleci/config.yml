@@ -1,0 +1,47 @@
+version: 2.1
+orbs:
+  node: circleci/node@4.1.0
+  aws-cli: circleci/aws-cli@1.3.1
+  eb: circleci/aws-elastic-beanstalk@1.0.0
+
+jobs:
+  cicd:
+    docker:
+      - image: 'cimg/node:16.15.0'
+    steps: 
+      - node/install
+      - checkout
+      - eb/setup
+      - aws-cli/install
+      - aws-cli/setup
+   
+      - run:
+          name: Install Frontend  dependencies
+          command: yarn fe-install
+      - run:
+          name: Install Backend dependencies
+          command: yarn be-install
+      - run:
+          name: Frontend build
+          command: yarn fe-build
+      - run:
+          name: Backend build
+          command: yarn be-build
+      - run:
+          name: Frontend test
+          command: yarn fe-test
+
+      - run:
+          name: Frontend deploy
+          command: yarn fe-deploy
+      - run:
+          name: Backend deploy
+          command: yarn be-deploy
+
+workflows:
+  deploy:
+    jobs:
+      - cicd:
+          filters:
+            branches:
+              only: [main]

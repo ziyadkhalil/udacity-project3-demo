@@ -10,7 +10,5 @@
     "fe-deploy": "cd frontend/build && aws s3 cp --recursive ./ s3://$BUCKET_NAME"
   },
   "devDependencies": {},
-  "dependencies": {
-    "axios": "^0.27.2"
-  }
+  "dependencies": {}
 }
